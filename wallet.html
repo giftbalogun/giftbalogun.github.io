@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My Personal Bitcoin Wallet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<link rel="icon" href="wallet/images/bitcoin_wallet.svg" type="image/svg">
+
+	<!-- Fonts-->
+	<link rel="stylesheet" type="text/css" href="assets/fonts/fontawesome/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/fonts/pe-icon/pe-icon.css">
+	<!-- Vendors-->
+	<link rel="stylesheet" type="text/css" href="assets/vendors/bootstrap/grid.css">
+
+	<!-- App & fonts-->
+	<link rel="stylesheet" type="text/css"
+		href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Oswald:400,600|Playfair+Display:400i">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<![endif]-->
+
+	<link rel="stylesheet" href="wallet/css/common.css">
+	<script type="text/javascript" src="assets/vendors/_jquery/jquery.min.js"></script>
+
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/common.js"></script>
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/hashes.js"></script>
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/jsbn.js"></script>
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/elliptic.js"></script>
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/btc.js"></script>
+	<script language='JavaScript' type='text/javascript' src="wallet/javascript/backend_bci.js"></script>
+	<script src="wallet/javascript/password_check/Mellt.js"></script>
+	<!-- Make sure common-passwords.js is included AFTER Mellt.js -->
+	<script src="wallet/javascript/password_check/common-passwords.js"></script>
+
+	<style id="antiClickjack">
+		body {
+			display: none !important;
+		}
+
+	</style>
+	<script type="text/javascript">
+		if (self === top) {
+			var antiClickjack = document.getElementById("antiClickjack");
+			antiClickjack.parentNode.removeChild(antiClickjack);
+		} else {
+			top.location = self.location;
+		}
+
+	</script>
+
+	<style>
+		.mt-150 {
+			margin-top: 150px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<!-- preload -->
+	<div class="preload" id="preload">
+		<div class="cssload-spin-box"></div>
+	</div><!-- End / preload -->
+
+	<div class="page-wrap">
+
+		<!-- header -->
+		<header class="header header-fixheight header--fixed">
+			<div class="container">
+				<div class="header__inner">
+					<div class="header-logo"><a href="wallet.html"><img src="wallet/images/bitcoin_wallet.svg"
+								alt="" /></a>
+					</div>
+					<!-- raising-nav -->
+					<nav class="raising-nav">
+						<!-- raising-menu -->
+						<ul class="raising-menu">
+							<li class="current-menu-item"><a href="#id1">My Wallet</a>
+							</li>
+						</ul><!-- raising-menu -->
+						<div class="navbar-toggle"><i class="fa fa-bars"></i></div>
+					</nav><!-- End / raising-nav -->
+				</div>
+			</div>
+		</header><!-- End / header -->
+
+		<!-- Content-->
+		<div class="md-content">
+
+			<!-- Section -->
+			<section class="md-section" id="id7" style="background-color:#fff;padding:60px 0 0;">
+				<div class="row">
+					<div class="col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-2 ">
+						<!-- sec-title -->
+						<div class="mt-150 sec-title sec-title__lg-title md-text-center">
+							<h2 class="sec-title__title">Double Bitcoin Wallet</h2><span
+								class="sec-title__divider"></span>
+							<br>
+							<h2 id="btc" class="sec-title__title">Current BTC Price</h2>
+						</div><!-- End / sec-title -->
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-9  col-lg-push-3">
+							<div class="main-content">
+								<div class="row">
+									<div class="col-lg-8 ">
+										<span id="close" onclick="location.reload()" title="sign out"><img
+												src="wallet/images/close_button.svg" /></span>
+
+										<img src="wallet/images/bitcoin_wallet.svg" />
+										<h1>Bitcoin Wallet</h1>
+										<p>This Bitcoin wallet works entirely in your browser. No information is ever
+											sent to Me.</p>
+
+										<form id="pass_form" action="javascript:open_wallet();">
+											<!-- form-item -->
+											<div class="form-item">
+												<input class="form-control" id="username" type="text"
+													placeholder="Username" />
+											</div><!-- End / form-item -->
+
+											<div class="form-item">
+												<input class="form-control" id="passphrase" type="password"
+													placeholder="Passphrase" title="Can also use compressed WIF key." />
+											</div><!-- End / form-item -->
+											<div class="hint" id="days_to_crack"></div>
+											<br>
+											<button class="btn btn-primary btn-round mb-30" type="submit">Open
+												Wallet</button>
+
+										</form>
+									</div>
+									<br>
+									<br>
+									<div class="col-lg-8 ">
+										<h2 id="showup">To See Your Wallet, Login Above</h2>
+										<form id="send_form" action="javascript:send_tx();">
+											<p>To deposit funds to your wallet, send Bitcoin to this address:</p>
+											<span id="adr"></span>
+											<div>
+												<h2 id="balance">Balance: </h2>
+												<span id="transactions"></span>
+											</div>
+											<!-- form-item -->
+											<div class="form-item">
+												<input class="form-control" id="to" type="text" placeholder="Address" />
+											</div><!-- End / form-item -->
+
+											<div class="form-item">
+												<input class="form-control" id="amount" type="text"
+													placeholder="Amount" />
+											</div><!-- End / form-item -->
+
+											<button class="btn btn-primary btn-round mb-30" type="submit">Send
+												Bitcoin</button>
+											<br>
+											<div class="alert" id="status"></div>
+										</form>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End / Section -->
+			<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+
+			<script language='JavaScript' type='text/javascript' src="wallet/javascript/workingwithme.js"></script>
+		</div>
+		<!-- End / Content-->
+
+		<!-- footer-01 -->
+		<footer class="footer-01 md-skin-dark">
+			<!-- copyright-01 -->
+			<div class="copyright-01 md-text-center">
+				<div class="container">
+					<p class="copyright-01__copy">2020 &copy; Copyright Double Bitcoin. All rights Reserved.</p>
+				</div>
+			</div><!-- End / copyright-01 -->
+		</footer><!-- End / footer-01 -->
+
+	</div>
+	<!-- App-->
+	<script type="text/javascript" src="assets/js/main.js"></script>
+</body>
+
+</html>

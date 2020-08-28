@@ -1,0 +1,105 @@
+#wrapper {
+    padding: 5vh;
+    min-height: calc(90vh - 75px - 80px);
+
+}
+
+#container {
+    margin: 0 auto;
+    max-width: 55vw;
+    padding: 5px 10px;
+    box-shadow: 0 0 8px #c2c2c2;
+    margin-top: 150px;
+}
+
+#content {
+    padding: 30px;
+}
+
+#wif {
+    color: #44484c;
+}
+
+.left-text {
+    text-align: left;
+}
+
+#balance {
+    display: inline-block;
+}
+
+#close {
+    float: right;
+    display: none;
+}
+
+#close:hover {
+    cursor: pointer;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+
+#transactions {
+    margin-left: 15px;
+}
+
+
+.content-inverse-color a {
+    text-decoration: underline;
+}
+
+#adr {
+    font-size: 85%;
+}
+
+@media screen and (max-width: 959px) {
+
+
+    #container {
+        max-width: 85vw;
+    }
+
+    #to {
+        width: 70%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    #amount,
+    #send_form button {
+        display: block;
+        margin: 10px auto;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #transactions {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    #to {
+        margin-top: 20px;
+    }
+
+    #pass_form input {
+
+        margin-bottom: 10px;
+    }
+
+    #content {
+        padding: 10px;
+    }
+
+    #adr {
+        font-size: 65%;
+    }
+}
