@@ -1,11 +1,11 @@
 # Balogun Github Profile
 
-Personal Portolio for Github
+Personal Portolio for Me
 
 ## Features
 
-- 💪 No need backend server
-- 📱 Mobile compatible
+- 💪 No backend server
+- 📱 Mobile Friendly
 
 ## License
 
